@@ -1,4 +1,4 @@
-package jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname.sample
+package byname_macro.sample
 
 /*
 Copyright (c) 2014, Hiroshi Yamaguchi (Core Software Group)
@@ -26,8 +26,6 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname.ByNameProxy
-import jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.debug._
 import org.scalatest.FunSuite
 
 class ByNameTest extends FunSuite {
@@ -48,7 +46,6 @@ class ByNameTest extends FunSuite {
   }
 
   test("by-name parameter passing") {
-    import ByName._
     try {
       parse("def piyo(thunk: => Any) {test(thunk)}")
       fail("error is expected")

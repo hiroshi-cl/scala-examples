@@ -1,4 +1,4 @@
-package jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname.sample
+package byname_macro.sample
 
 /*
 Copyright (c) 2014, Hiroshi Yamaguchi (Core Software Group)
@@ -26,10 +26,9 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname._
-import language.experimental.macros
+import scala.language.experimental.macros
+import scala.language.higherKinds
 import scala.reflect.macros.whitebox.Context
-import language.higherKinds
 
 private[sample] object ByNameWithProxy {
 

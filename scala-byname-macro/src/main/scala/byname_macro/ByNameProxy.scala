@@ -1,4 +1,4 @@
-package jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname
+package byname_macro
 
 /*
 Copyright (c) 2014, Hiroshi Yamaguchi (Core Software Group)

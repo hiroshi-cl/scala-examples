@@ -1,4 +1,4 @@
-package jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname
+package byname_macro
 
 /*
 Copyright (c) 2014, Hiroshi Yamaguchi (Core Software Group)
@@ -27,9 +27,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 import scala.reflect.macros.whitebox.Context
-import jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi._
-import util.infixify._
-import macros.base._
 
 class ByNameBundle(override val c: Context) extends EnhancedMacroBundleBase(c) {
 

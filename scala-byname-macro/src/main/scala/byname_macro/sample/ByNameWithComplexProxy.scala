@@ -1,4 +1,4 @@
-package jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname.sample
+package byname_macro.sample
 
 /*
 Copyright (c) 2014, Hiroshi Yamaguchi (Core Software Group)
@@ -26,22 +26,24 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname._
-import language.experimental.macros
+import scala.language.experimental.macros
+import scala.language.higherKinds
 import scala.reflect.macros.whitebox.Context
-import language.higherKinds
 
-private[sample] object ByNameRaw {
+private[sample] object ByNameWithComplexProxy {
 
-  implicit def byNameRawSample: String = macro ByNameBundle.byName
+  implicit def byNameProxySample[A, B, C]: ByNameProxy[A, String => (B, C)] = macro ByNameBundle.byNameProxy
 
-  def apply(s: Any): String = macro applyImpl
+  def apply[A, B](u: A, s: B): String => (B, String) = macro applyImpl
 
-  def applyImpl(c: Context)(s: c.Tree) = {
+  def applyImpl(c: Context)(u: c.Tree, s: c.Tree) = {
     import c.universe._
-    q"${show(s)} + ${" : "} + ${show(c.prefix.tree)}"
+    q"(in: String) => ($s, in + ${show(c.prefix.tree)} + ${" : "} + ${show(s)} + ${" : "} + ${show(u)})"
   }
 
-  def raw(thunk: => Any)(implicit s: String) = s
+  implicit val u: Unit = ()
+
+  def dispatching[A, C](thunk: => A)(implicit s: ByNameProxy[Unit, String => (A, C)]) = s.a("hoge:\t")
+
 }
 

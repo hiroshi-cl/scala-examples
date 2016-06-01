@@ -1,4 +1,4 @@
-package jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname.sample
+package byname_macro.sample
 
 /*
 Copyright (c) 2014, Hiroshi Yamaguchi (Core Software Group)
@@ -26,14 +26,13 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi.macros.byname.ByNameBundle
 import language.experimental.macros
 import scala.reflect.macros.whitebox.Context
 import language.higherKinds
 
-private[sample] object ByName {
+private[sample] object ByNameRaw {
 
-  implicit def byNameSample: Unit => String = macro ByNameBundle.byName
+  implicit def byNameRawSample: String = macro ByNameBundle.byName
 
   def apply(s: Any): String = macro applyImpl
 
@@ -42,10 +41,6 @@ private[sample] object ByName {
     q"${show(s)} + ${" : "} + ${show(c.prefix.tree)}"
   }
 
-  def tree(thunk: => Any)(implicit s: Unit => String) = s()
-
-  implicit def enc(implicit s: Unit => String): Int = s().length
-
-  def length(thunk: => Any)(implicit s: Int) = s
-
+  def raw(thunk: => Any)(implicit s: String) = s
 }
+

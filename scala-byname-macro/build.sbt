@@ -1,4 +1,4 @@
-name := "scala-examples-null"
+name := "scala-examples-byname-macro"
 
 version := "1.0"
 
