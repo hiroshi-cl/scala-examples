@@ -8,15 +8,11 @@ class loggerBundle(val c: whitebox.Context) {
 
   def impl(annottees: Tree*): Tree = {
     val DefDef(mods, name, tparams, vparamss, tpt, rhs) :: Nil = annottees
-    val list = List(
-      q"print(${name + " ("})",
-      q"print(..${vparamss.flatten.map(_.name)})",
-      q"val r = $rhs",
-      q"print(${") = "})",
-      q"println(r)",
-      q"r"
-    )
-    DefDef(mods, name, tparams, vparamss, tpt, q"..$list")
+    val newName = TermName(name + "$" + "log")
+    val created = DefDef(mods, name, tparams, vparamss, tpt,
+      q"$newName[..${tparams.map(_.name)}](...${vparamss.map(_.map(_.name))})")
+    val copied = DefDef(mods, newName, tparams, vparamss, tpt, rhs)
+    q"$created; $copied; ()"
   }
 }
 
