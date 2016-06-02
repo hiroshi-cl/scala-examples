@@ -1,13 +1,13 @@
-import scala.reflect.macros.Context
+import scala.reflect.macros._
 import scala.language.experimental.macros
 import scala.annotation.StaticAnnotation
 
-object helloMacro {
-  def impl(c: Context)(annottees: c.Expr[Any]*): c.Expr[Any] = {
-    import c.universe._
-    import Flag._
+class helloBundle(val c: whitebox.Context) {
+  import c.universe._
+
+  def impl(annottees: Tree*): Tree = {
     val result = {
-      annottees.map(_.tree).toList match {
+      annottees.toList match {
         case q"object $name extends ..$parents { ..$body }" :: Nil =>
           q"""
             object $name extends ..$parents {
@@ -17,10 +17,10 @@ object helloMacro {
           """
       }
     }
-    c.Expr[Any](result)
+    result
   }
 }
 
 class hello extends StaticAnnotation {
-  def macroTransform(annottees: Any*) = macro helloMacro.impl
+  def macroTransform(annottees: Any*): Any = macro helloBundle.impl
 }
