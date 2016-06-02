@@ -26,3 +26,9 @@ libraryDependencies += "jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi" % "core_engine
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6" % Test
 
 libraryDependencies += "junit" % "junit" % "4.12" % Test
+
+publishTo := Some(Resolver.file("file", file("target") / "repo"))
+
+organization := "jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi"
+
+version := "1.0.0-SNAPSHOT"
