@@ -1,4 +1,7 @@
-@hello
+
 object Test extends App {
-  println(this.hello)
+  @logger
+  def hello(a: Int) = a
+
+  println(hello(10))
 }
