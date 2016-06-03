@@ -10,9 +10,7 @@ crossVersion := CrossVersion.full
 
 scalacOptions ++= Seq("-feature", "-deprecation", "-unchecked", "-explaintypes", "-Xlint", "-Yinline-warnings", "-optimise")
 
-resolvers += "hiroshi-cl" at "https://hiroshi-cl.github.io/sbt-repos/"
-
-addCompilerPlugin("jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi" % "core_plugin" % "3.0.0-SNAPSHOT" cross CrossVersion.full)
+addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 
 libraryDependencies <++= (scalaOrganization, scalaVersion) { (org, ver) => Seq(
   org % "scala-compiler" % ver,
@@ -20,8 +18,6 @@ libraryDependencies <++= (scalaOrganization, scalaVersion) { (org, ver) => Seq(
   org % "scala-reflect" % ver
 )
 }
-
-libraryDependencies += "jp.ac.u_tokyo.i.ci.csg.hiroshi_yamaguchi" % "core_engine" % "3.0.0-SNAPSHOT" cross CrossVersion.full
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6" % Test
 
