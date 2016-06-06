@@ -1,11 +1,10 @@
 package byname_macro
-package sample
 
 import scala.language.experimental.macros
 import scala.language.higherKinds
 import scala.reflect.macros.whitebox.Context
 
-private[sample] object ByNameWithProxy {
+object ByNameWithProxy {
 
   def apply[A](u: A, s: Any): String = macro applyImpl
 

@@ -1,11 +1,10 @@
 package byname_macro
-package sample
 
-import language.experimental.macros
+import scala.language.experimental.macros
+import scala.language.higherKinds
 import scala.reflect.macros.whitebox.Context
-import language.higherKinds
 
-private[sample] object ByNameRaw {
+object ByNameRaw {
 
   implicit def byNameRawSample: String = macro ByNameBundle.byName
 

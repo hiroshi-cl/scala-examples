@@ -1,5 +1,4 @@
 package byname_macro
-package sample
 
 import scala.language.experimental.macros
 import scala.language.higherKinds

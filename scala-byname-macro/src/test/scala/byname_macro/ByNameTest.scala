@@ -1,5 +1,4 @@
 package byname_macro
-package sample
 
 import org.scalatest.FunSuite
 

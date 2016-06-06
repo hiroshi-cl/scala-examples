@@ -1,11 +1,10 @@
 package byname_macro
-package sample
 
 import scala.language.experimental.macros
 import scala.language.higherKinds
 import scala.reflect.macros.whitebox.Context
 
-private[sample] object ByNameWithComplexProxy {
+object ByNameWithComplexProxy {
 
   implicit def byNameProxySample[A, B, C]: ByNameProxy[A, String => (B, C)] = macro ByNameBundle.byNameProxy
 
