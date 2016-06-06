@@ -5,9 +5,9 @@ import scala.language.experimental.macros
 import scala.language.higherKinds
 import scala.reflect.macros.whitebox.Context
 
-private[sample] object ByName {
+object ByName {
 
-  implicit def byNameSample: Unit => String = macro ByNameBundle.byName
+  implicit def byNameSample: () => String = macro ByNameBundle.byName
 
   def apply(s: Any): String = macro applyImpl
 
@@ -16,9 +16,9 @@ private[sample] object ByName {
     q"${show(s)} + ${" : "} + ${show(c.prefix.tree)}"
   }
 
-  def tree(thunk: => Any)(implicit s: Unit => String) = s()
+  def tree(thunk: => Any)(implicit s: () => String) = s()
 
-  implicit def enc(implicit s: Unit => String): Int = s().length
+  implicit def enc(implicit s: () => String): Int = s().length
 
   def length(thunk: => Any)(implicit s: Int) = s
 

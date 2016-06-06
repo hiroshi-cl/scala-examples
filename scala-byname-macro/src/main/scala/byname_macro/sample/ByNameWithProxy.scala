@@ -16,9 +16,9 @@ private[sample] object ByNameWithProxy {
 
   implicit val u: Unit = ()
 
-  implicit def proxy[A]: ByNameProxy[A, Unit => String] = macro ByNameBundle.byNameProxy
+  implicit def proxy[A]: ByNameProxy[A, () => String] = macro ByNameBundle.byNameProxy
 
-  def dispatching(thunk: => Any)(implicit s: ByNameProxy[Unit, Unit => String]) = s.a()
+  def dispatching(thunk: => Any)(implicit s: ByNameProxy[Unit, () => String]) = s.a()
 
 }
 

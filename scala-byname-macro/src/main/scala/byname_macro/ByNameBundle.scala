@@ -10,7 +10,8 @@ class ByNameBundle(override val c: Context) extends AbstractBundle with internal
 
   def byName = {
     c.enclosingImplicits match {
-      case head :: (_ :+ last) =>
+      case list@(head :: _) =>
+        val last = list.last
         getByNames(last.tree) match {
           case List(byNameArg) =>
             val res = q"${c.prefix.tree} ($byNameArg)"
@@ -32,7 +33,8 @@ class ByNameBundle(override val c: Context) extends AbstractBundle with internal
 
   def byNameProxy = {
     c.enclosingImplicits match {
-      case list@(head :: (_ :+ last)) =>
+      case list@(head :: _) =>
+        val last = list.last
         getByNames(last.tree) match {
           case List(byNameArg) =>
             if (head.pt.typeConstructor =:= typeOf[ByNameProxy[_, _]].typeConstructor) {
@@ -139,12 +141,17 @@ class ByNameBundle(override val c: Context) extends AbstractBundle with internal
   }
 
   private[this] def error(tree: Tree)(message: String = "ERROR") = {
-    c.abort(tree.pos,
-      List(message
-        , "** symbol **", Option(tree.symbol).getOrElse(NoSymbol).toString
-        , "** code **", show(tree)
-        , "** tree **", showRaw(tree)
-        , "** stack trace **", Thread.getAllStackTraces.get(Thread.currentThread()).mkString("\n\t")
-      ).mkString("\n\t"))
+    println(List(message
+      , "** symbol **", Option(tree.symbol).getOrElse(NoSymbol).toString
+      , "** code **", show(tree)
+      , "** tree **", showRaw(tree)
+      , "** stack trace **", Thread.getAllStackTraces.get(Thread.currentThread()).mkString("\n\t")
+    ).mkString("\n\t"))
+    c.abort(tree.pos,List(message
+      , "** symbol **", Option(tree.symbol).getOrElse(NoSymbol).toString
+      , "** code **", show(tree)
+      , "** tree **", showRaw(tree)
+      , "** stack trace **", Thread.getAllStackTraces.get(Thread.currentThread()).mkString("\n\t")
+    ).mkString("\n\t"))
   }
 }
