@@ -5,8 +5,8 @@ class Plugin(override val global: scala.tools.nsc.Global) extends AbstractPlugin
   with pieces.mixin.ImplicitImport
   with pieces.mixin.SavedTreeExtractor {
 
-  val name = "invmacs"
-  val description = "Inverse macros, macro paradise, etc."
+  val name = "imp^2"
+  val description = "Implicit importer."
   val components = Nil
 
   override def init(options: List[String], error: (String) => Unit): Boolean = {
