@@ -1,6 +1,7 @@
 package inverse_macros
 
 class Plugin(override val global: scala.tools.nsc.Global) extends AbstractPlugin
+  with mixin.ParadisePlugins
   with mixin.InverseMacrosPlugins
   with pieces.mixin.ImplicitImport
   with pieces.mixin.SavedTreeExtractor {

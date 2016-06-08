@@ -4,6 +4,12 @@ trait UseGlobal {
   val global: scala.tools.nsc.Global
 }
 
+trait UseParadisePlugins extends UseGlobal {
+  def paradiseAnalyzerPlugin: global.analyzer.AnalyzerPlugin
+
+  def paradiseMacroPlugin: global.analyzer.MacroPlugin
+}
+
 trait UseInverseMacrosPlugins extends UseGlobal {
   def inverseMacrosAnalyzerPlugin: global.analyzer.AnalyzerPlugin
 
@@ -12,6 +18,7 @@ trait UseInverseMacrosPlugins extends UseGlobal {
 
 trait AbstractPlugin extends scala.tools.nsc.plugins.Plugin
   with UseGlobal
+  with UseParadisePlugins
   with UseInverseMacrosPlugins
   with pieces.UseImplicitImport
   with pieces.UseSavedTreeExtractor
