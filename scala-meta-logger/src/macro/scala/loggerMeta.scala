@@ -27,3 +27,28 @@ object loggerMeta {
   }
 }
 */
+
+/*
+Macro paradise がバグってる…
+@loggerMeta
+def def hello(a: Int) = a
+のようにしているのに
+    val q"$mods def $name[..$tparams](...$vparamss): $tpt = $rhs" = defn
+で defn に object がまるごと入ってる
+
+scala.MatchError: object Test extends App {
+  def hello(a: Int) = a
+  def bye(a: Int)(b: Int) = a
+  def ret(a: Int): Int = {
+    println("ret")
+    if (true) return a
+    a
+  }
+  def poly[A](a: A) = a
+  println(hello(10))
+  println(bye(20)(30))
+  println(ret(30))
+  println(poly(40))
+} (of class scala.meta.Defn$Object$DefnObjectImpl)
+
+ */
