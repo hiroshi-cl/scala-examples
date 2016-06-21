@@ -11,7 +11,7 @@ crossVersion := CrossVersion.full
 
 scalacOptions ++= Seq("-feature", "-deprecation", "-unchecked", "-explaintypes", "-Xlint", "-Yinline-warnings", "-optimise")
 
-addCompilerPlugin("org.scalamacros" % "paradise" % "3.0.0-M1" cross CrossVersion.full)
+addCompilerPlugin("org.scalamacros" % "paradise" % "3.0.0-M2" cross CrossVersion.full)
 
 lazy val Macro = config("macro").hide.extend(Compile)
 
