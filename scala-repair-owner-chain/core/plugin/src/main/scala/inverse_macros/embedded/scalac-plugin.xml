@@ -1,0 +1,4 @@
+<plugin>
+  <name>repair-owner-chain-plugin</name>
+  <classname>inverse_macros.Plugin</classname>
+</plugin>
