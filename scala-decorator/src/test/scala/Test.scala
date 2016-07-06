@@ -24,7 +24,7 @@ object Test extends App {
   }
 
   // TODO
-//  @logger
+//  @decorstor[?, ?](logger)
 //  def poly[A](a: A) = a
 
   println(hello(10))
