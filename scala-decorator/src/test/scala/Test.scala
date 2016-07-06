@@ -8,13 +8,13 @@ object Test extends App {
     r
   }
 
-  @decorator[Int, Int](logger)
+  @decorator(logger)
   def hello(a: Int) = a
 
-  @decorator[Int, Int => Int](logger)
+  @decorator(logger)
   def bye(a: Int)(b: Int) = a
 
-  @decorator[Int, Int](logger)
+  @decorator(logger)
   def ret(a: Int): Int = {
     println("ret")
     if(true)
@@ -24,7 +24,7 @@ object Test extends App {
   }
 
   // TODO
-//  @decorstor[?, ?](logger)
+//  @decorator(logger)
 //  def poly[A](a: A) = a
 
   println(hello(10))

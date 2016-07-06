@@ -16,6 +16,6 @@ class decoratorBundle(val c: whitebox.Context) {
   }
 }
 
-class decorator[X, R](f: (X => R) => X => R) extends StaticAnnotation {
+class decorator(f: (_ => _) => _ => _) extends StaticAnnotation {
   def macroTransform(annottees: Any*): Any = macro decoratorBundle.impl
 }
